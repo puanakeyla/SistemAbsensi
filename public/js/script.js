@@ -58,8 +58,10 @@ function initializeCharts() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
+            layout: { padding: 6 },
             plugins: {
-                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 12 } },
+                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 8, font: { size: 12 } } },
                 tooltip: {
                     callbacks: {
                         label: function(context) {

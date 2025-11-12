@@ -222,6 +222,62 @@ body {
     margin-bottom: 30px;
 }
 
+/* Main grid: left content + right panel */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 22px;
+    align-items: start;
+}
+
+.main-left {}
+.main-right {}
+
+/* Unified overview card styles */
+.overview-card {
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.overview-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.overview-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.overview-left, .overview-right {
+    background: transparent;
+}
+
+.small-title {
+    font-size: 0.95rem;
+    margin: 0 0 8px 0;
+    color: var(--dark);
+}
+
+@media (max-width: 800px) {
+    .overview-stats { grid-template-columns: repeat(2, 1fr); }
+    .overview-body { grid-template-columns: 1fr; }
+}
+
+.main-right .card, .main-right .notifikasi {
+    margin-bottom: 12px;
+}
+
+/* constrain right panel charts */
+.main-right canvas {
+    max-height: 220px;
+    width: 100% !important;
+    height: auto !important;
+}
+
 .card {
     background-color: white;
     border-radius: 10px;

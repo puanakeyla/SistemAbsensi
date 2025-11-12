@@ -91,7 +91,7 @@ $notifikasi = [
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/dashboardMahasiswa.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="topbar">
@@ -144,129 +144,130 @@ $notifikasi = [
                 </div>
             </div>
             
-            <!-- Quick Stats -->
-            <div class="quick-stats">
-                <div class="stat-card fade-in">
-                    <div class="stat-icon" style="background-color: var(--success);">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 data-target="<?php echo $statistik['kehadiran']; ?>" id="stat1">0%</h3>
-                        <p id="stat1-label">Kehadiran</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background-color: var(--secondary);">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 data-target="<?php echo $statistik['mata_kuliah']; ?>" id="stat2">0</h3>
-                        <p>Mata Kuliah</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background-color: var(--warning);">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 data-target="<?php echo $statistik['izin']; ?>" id="stat3">0</h3>
-                        <p>Izin</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background-color: var(--danger);">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 data-target="<?php echo $statistik['alpha']; ?>" id="stat4">0</h3>
-                        <p>Alpha</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Cards -->
-            <div class="cards">
-                <div class="card fade-in">
-                    <div class="card-header">
-                        <div class="card-title"><i class="fas fa-calendar-day"></i> Jadwal Hari Ini</div>
-                        <div class="card-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <?php foreach($jadwal_hari_ini as $jadwal): ?>
-                        <div class="jadwal-item">
-                            <div class="jadwal-info">
-                                <h4><?php echo $jadwal['matkul']; ?></h4>
-                                <p><?php echo $jadwal['dosen']; ?></p>
+            <!-- Main grid: left (content) + right (panel) -->
+            <div class="main-grid">
+                <div class="main-left">
+
+                <!-- Unified Overview Card -->
+                <div class="overview-card card fade-in">
+                    <div class="overview-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: var(--success);">
+                                <i class="fas fa-check-circle"></i>
                             </div>
-                            <div class="jadwal-waktu">
-                                <div class="waktu"><?php echo $jadwal['waktu']; ?></div>
-                                <div class="ruang"><?php echo $jadwal['ruang']; ?></div>
+                            <div class="stat-info">
+                                <h3 data-target="<?php echo $statistik['kehadiran']; ?>" id="stat1">0%</h3>
+                                <p id="stat1-label">Kehadiran</p>
                             </div>
                         </div>
-                        <?php endforeach; ?>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: var(--secondary);">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 data-target="<?php echo $statistik['mata_kuliah']; ?>" id="stat2">0</h3>
+                                <p>Mata Kuliah</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: var(--warning);">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 data-target="<?php echo $statistik['izin']; ?>" id="stat3">0</h3>
+                                <p>Izin</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: var(--danger);">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 data-target="<?php echo $statistik['alpha']; ?>" id="stat4">0</h3>
+                                <p>Alpha</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-body">
+                        <div class="overview-left">
+                            <h3 class="small-title"><i class="fas fa-calendar-day"></i> Jadwal Hari Ini</h3>
+                            <div class="jadwal-list">
+                                <?php foreach($jadwal_hari_ini as $jadwal): ?>
+                                <div class="jadwal-item">
+                                    <div class="jadwal-info">
+                                        <h4><?php echo $jadwal['matkul']; ?></h4>
+                                        <p><?php echo $jadwal['dosen']; ?></p>
+                                    </div>
+                                    <div class="jadwal-waktu">
+                                        <div class="waktu"><?php echo $jadwal['waktu']; ?></div>
+                                        <div class="ruang"><?php echo $jadwal['ruang']; ?></div>
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                        <div class="overview-right">
+                            <h3 class="small-title"><i class="fas fa-clipboard-list"></i> Status Absensi</h3>
+                            <div class="status-list">
+                                <?php foreach($status_absensi as $absensi): ?>
+                                <div class="jadwal-item">
+                                    <div class="jadwal-info">
+                                        <h4><?php echo $absensi['matkul']; ?></h4>
+                                        <p><?php echo $absensi['waktu']; ?></p>
+                                    </div>
+                                    <div class="jadwal-waktu">
+                                        <?php if($absensi['status'] == 'hadir'): ?>
+                                            <span class="status-badge status-hadir">Hadir</span>
+                                        <?php elseif($absensi['status'] == 'belum_absen'): ?>
+                                            <button class="btn btn-success btn-block" data-matkul="<?php echo $absensi['matkul']; ?>">
+                                                <i class="fas fa-fingerprint"></i> Absen Sekarang
+                                            </button>
+                                        <?php else: ?>
+                                            <span class="status-badge status-pending">Belum Dimulai</span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="card fade-in">
-                    <div class="card-header">
-                        <div class="card-title"><i class="fas fa-clipboard-list"></i> Status Absensi</div>
-                        <div class="card-icon">
-                            <i class="fas fa-check-double"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <?php foreach($status_absensi as $absensi): ?>
-                        <div class="jadwal-item">
-                            <div class="jadwal-info">
-                                <h4><?php echo $absensi['matkul']; ?></h4>
-                                <p><?php echo $absensi['waktu']; ?></p>
-                            </div>
-                            <div class="jadwal-waktu">
-                                <?php if($absensi['status'] == 'hadir'): ?>
-                                    <span class="status-badge status-hadir">Hadir</span>
-                                <?php elseif($absensi['status'] == 'belum_absen'): ?>
-                                    <button class="btn btn-success btn-block" data-matkul="<?php echo $absensi['matkul']; ?>">
-                                        <i class="fas fa-fingerprint"></i> Absen Sekarang
-                                    </button>
-                                <?php else: ?>
-                                    <span class="status-badge status-pending">Belum Dimulai</span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
-                    </div>
+                <!-- Statistik Kehadiran moved to the right panel -->
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <div class="chart-title"><i class="fas fa-chart-line"></i> Grafik Kehadiran Semester Ini</div>
+                    <canvas id="monthlyChart" height="100"></canvas>
                 </div>
-                
-                <div class="card fade-in">
-                    <div class="card-header" style="align-items:center; gap:12px;">
-                        <div style="display:flex; align-items:center; gap:12px;">
-                            <div class="card-title"><i class="fas fa-chart-pie"></i> Statistik Kehadiran</div>
-                            <select id="courseSelect" class="select-course" aria-label="Pilih Mata Kuliah">
-                                <option value="pemrograman_web">Pemrograman Web</option>
-                                <option value="basis_data">Basis Data Lanjut</option>
-                                <option value="jaringan">Jaringan Komputer</option>
-                            </select>
+
+                </div> <!-- .main-left -->
+
+                <aside class="main-right">
+                    <!-- Statistik Kehadiran (moved to right panel) -->
+                    <div class="card fade-in">
+                        <div class="card-header" style="align-items:center; gap:12px;">
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <div class="card-title"><i class="fas fa-chart-pie"></i> Statistik Kehadiran</div>
+                                <select id="courseSelect" class="select-course" aria-label="Pilih Mata Kuliah">
+                                    <option value="pemrograman_web">Pemrograman Web</option>
+                                    <option value="basis_data">Basis Data Lanjut</option>
+                                    <option value="jaringan">Jaringan Komputer</option>
+                                </select>
+                            </div>
+                            <div class="card-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
                         </div>
-                        <div class="card-icon">
-                            <i class="fas fa-chart-bar"></i>
+                        <div class="card-body">
+                            <canvas id="attendanceChart" height="160"></canvas>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <canvas id="attendanceChart" height="200"></canvas>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Chart -->
-            <div class="chart-container">
-                <div class="chart-title"><i class="fas fa-chart-line"></i> Grafik Kehadiran Semester Ini</div>
-                <canvas id="monthlyChart" height="100"></canvas>
-            </div>
-            
-            <!-- Notifikasi -->
-            <div class="notifikasi">
+
+                    <!-- Notifikasi -->
+                    <div class="notifikasi">
                 <div class="card-header">
                     <div class="card-title"><i class="fas fa-bell"></i> Notifikasi Terbaru</div>
                 </div>
