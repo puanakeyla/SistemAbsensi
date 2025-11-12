@@ -7,6 +7,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Start session BEFORE any output
+session_start();
+
 echo "<h1>Admin Panel - Diagnostic Test</h1>";
 echo "<hr>";
 
@@ -25,7 +28,6 @@ try {
 
 // Test 2: Session
 echo "<h2>2. Session</h2>";
-session_start();
 echo "<span style='color:green'>✓ Session started</span>";
 if (isset($_SESSION['admin_id'])) {
     echo " (Logged in as: " . htmlspecialchars($_SESSION['admin_name']) . ")";
