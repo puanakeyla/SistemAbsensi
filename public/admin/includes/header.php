@@ -47,6 +47,7 @@ function admin_name() {
                     <li><a href="index.php"><i class="fas fa-tachometer-alt"></i> <span class="label">Dashboard</span></a></li>
                     <li><a href="students.php"><i class="fas fa-users"></i> <span class="label">Mahasiswa</span></a></li>
                     <li><a href="attendance.php"><i class="fas fa-clipboard-check"></i> <span class="label">Absensi</span></a></li>
+                    <li><a href="qr_session.php"><i class="fas fa-qrcode"></i> <span class="label">QR Absensi</span></a></li>
                     <li><a href="izin_requests.php"><i class="fas fa-file-medical"></i> <span class="label">Pengajuan Izin</span></a></li>
                     <li><a href="courses.php"><i class="fas fa-book"></i> <span class="label">Mata Kuliah</span></a></li>
                     <li><a href="classes.php"><i class="fas fa-chalkboard"></i> <span class="label">Kelas</span></a></li>
