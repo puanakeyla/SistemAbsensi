@@ -1,6 +1,8 @@
 <?php
-header('Location: mahasiswa/index.php');
-exit;
+session_start();
+
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../app/Models/MahasiswaModel.php';
 
 function formatTimeRange(?string $start, ?string $end): string {
     $startTime = $start ? date('H:i', strtotime($start)) : null;
@@ -299,8 +301,8 @@ try {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div class="topbar">
@@ -474,8 +476,6 @@ try {
                     </div>
                 </div>
                 
-                <!-- Statistik Kehadiran moved to the right panel -->
-
                 <!-- Chart -->
                 <div class="chart-container">
                     <div class="chart-title"><i class="fas fa-chart-line"></i> Grafik Kehadiran Semester Ini</div>
@@ -485,7 +485,6 @@ try {
                 </div> <!-- .main-left -->
 
                 <aside class="main-right">
-                    <!-- Statistik Kehadiran (moved to right panel) -->
                     <div class="card fade-in">
                         <div class="card-header" style="align-items:center; gap:12px;">
                             <div style="display:flex; align-items:center; gap:12px;">
@@ -505,43 +504,44 @@ try {
                         </div>
                     </div>
 
-                    <!-- Notifikasi -->
                     <div class="notifikasi">
-                <div class="card-header">
-                    <div class="card-title"><i class="fas fa-bell"></i> Notifikasi Terbaru</div>
-                </div>
-                <div class="card-body">
-                    <?php if (empty($notifikasi)): ?>
-                        <p style="color: var(--gray); font-size: 0.9rem;">Belum ada notifikasi terbaru.</p>
-                    <?php else: ?>
-                        <?php foreach ($notifikasi as $notif): ?>
-                        <?php
-                            $icon = 'clock';
-                            if ($notif['tipe'] === 'success') {
-                                $icon = 'check-circle';
-                            } elseif ($notif['tipe'] === 'danger') {
-                                $icon = 'times-circle';
-                            } elseif ($notif['tipe'] === 'info') {
-                                $icon = 'info-circle';
-                            }
-                        ?>
-                        <div class="notifikasi-item <?php echo $notif['unread'] ? 'unread' : ''; ?>">
-                            <div class="notifikasi-icon <?php echo htmlspecialchars($notif['tipe'], ENT_QUOTES, 'UTF-8'); ?>">
-                                <i class="fas fa-<?php echo $icon; ?>"></i>
-                            </div>
-                            <div class="notifikasi-content">
-                                <div class="notifikasi-judul"><?php echo htmlspecialchars($notif['judul'], ENT_QUOTES, 'UTF-8'); ?></div>
-                                <p><?php echo htmlspecialchars($notif['pesan'], ENT_QUOTES, 'UTF-8'); ?></p>
-                                <div class="notifikasi-tanggal"><?php echo htmlspecialchars($notif['tanggal'], ENT_QUOTES, 'UTF-8'); ?></div>
-                            </div>
+                        <div class="card-header">
+                            <div class="card-title"><i class="fas fa-bell"></i> Notifikasi Terbaru</div>
                         </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
+                        <div class="card-body">
+                            <?php if (empty($notifikasi)): ?>
+                                <p style="color: var(--gray); font-size: 0.9rem;">Belum ada notifikasi terbaru.</p>
+                            <?php else: ?>
+                                <?php foreach ($notifikasi as $notif): ?>
+                                <?php
+                                    $icon = 'clock';
+                                    if ($notif['tipe'] === 'success') {
+                                        $icon = 'check-circle';
+                                    } elseif ($notif['tipe'] === 'danger') {
+                                        $icon = 'times-circle';
+                                    } elseif ($notif['tipe'] === 'info') {
+                                        $icon = 'info-circle';
+                                    }
+                                ?>
+                                <div class="notifikasi-item <?php echo $notif['unread'] ? 'unread' : ''; ?>">
+                                    <div class="notifikasi-icon <?php echo htmlspecialchars($notif['tipe'], ENT_QUOTES, 'UTF-8'); ?>">
+                                        <i class="fas fa-<?php echo $icon; ?>"></i>
+                                    </div>
+                                    <div class="notifikasi-content">
+                                        <div class="notifikasi-judul"><?php echo htmlspecialchars($notif['judul'], ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <p><?php echo htmlspecialchars($notif['pesan'], ENT_QUOTES, 'UTF-8'); ?></p>
+                                        <div class="notifikasi-tanggal"><?php echo htmlspecialchars($notif['tanggal'], ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

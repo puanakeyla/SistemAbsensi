@@ -1,8 +1,4 @@
 <?php
-require_once __DIR__ . '/../app/Models/MahasiswaModel.php';
-return;
-
-/* Legacy definition retained for reference.
 class MahasiswaModel {
     private $conn;
     private $table_name = "mahasiswa";
@@ -171,5 +167,4 @@ class MahasiswaModel {
         return $hariMap[$dayName] ?? null;
     }
 }
-*/
 ?>
